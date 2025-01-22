@@ -1,0 +1,107 @@
+
+\documentclass[12pt]{article}
+
+\usepackage[margin=2cm]{geometry}
+
+\usepackage{titlesec}
+\usepackage{listings}
+
+\usepackage{xcolor}
+
+\definecolor{commentsColor}{rgb}{0.497495, 0.497587, 0.497464}
+\definecolor{keywordsColor}{rgb}{0.000000, 0.000000, 0.635294}
+\definecolor{stringColor}{rgb}{0.558215, 0.000000, 0.135316}
+
+\titleformat{\section}
+{\bfseries\Large} % Format: bold and large font
+{}                % Empty label: no section number
+{0pt}             % No space between label and title
+{}                % Before code
+
+\titleformat{\subsection}
+{\bfseries\large} % Format: bold and large font
+{}                % Empty label: no section number
+{0pt}             % No space between label and title
+{}                % Before code
+
+\lstset{frame=tb,
+	morekeywords={return, error, if, else, while, for, repeat, until, by, downto, to,return},
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily\color{black}},
+	numbers=none,
+	comment=[l]{//},
+	%numberstyle=\tiny\color{black},
+	keywordstyle={\color{keywordsColor}\bfseries},
+	%commentstyle=\color{green},
+	commentstyle={\color{commentsColor}},
+	stringstyle=\color{stringColor},
+	%breaklines=true,
+	backgroundcolor=\color{white},
+	%foregroundcolor=\color{white},
+	frame=none,
+	breakatwhitespace=true,
+	tabsize=3
+	, xleftmargin=2em, xrightmargin=2em
+}
+
+\title{Homework 2}
+\date{Due: 11:59pm on October 14th, 2024}
+
+\makeatletter
+\renewcommand{\maketitle}{
+	\begin{center}
+		\let\footnote\thanks
+		{\LARGE \@title \par} % Display the title
+		\vskip 1.5em % Space after the title
+		{\large \@date \par} % Display the date (if provided)
+		\vskip 1.5em % Space after the date
+	\end{center}
+}
+
+\begin{document}
+	
+   \maketitle
+   
+   \begin{enumerate}
+   	  \item \textbf{Greedy.} For 2 of the 3 problems below create the following,
+   	  
+   	  \begin{itemize}
+   	     \item (10 points each) An efficient greedy solution in pseudo code.
+   	     \item (5 points each) A coded version of your solution.
+   	     \item (5 points each) An exchange argument for the correctness of your solution.
+   	     \item (5 points each) Runtime analysis of your solution.
+   	  \end{itemize} 
+   	  
+   	  The 3 problems are as follows.
+   	  \begin{enumerate}
+   	     \item There are $N$ students that share a single computer and a single printer for making their homework solution. Each student can only use the computer if no other student is using the computer. and the printer can only work on printing a single homework solution at a time. Every student will require a different amount of time to use the computer, $c_i$, and printer, $p_i$. The student has to finish their homework solution, before they can begin printing. Determine the last amount of time required for all students to finish their homework solution.
+   	     \item A group of friends will go out this weekend to relax and take their mind of their work. There are $N$ possible venues they can go to. Each venue will open at a particular time $o_i$ and close at a particular time $c_i$. Assuming it takes 1 unit of time to travel between any pair of venues determine the most number of venues the group of friends can go to.
+   	     \item You are going to solder $N$ components to a circuit board. Each component is old and you have only one of it. Each component has a chance to break when soldered, $p_i$. The order of the soldering does not change the probability that you succeed. Each component requires some amount of time to solder, $t_i$. If you break the component during soldering, you are going to quit. You want to know the least expected amount of time to spend soldering, given that you can choose the order.
+   	  \end{enumerate}
+   	  
+   	  \item \textbf{Dynamic Programming.} For the following problem create the following,
+   	  \begin{itemize}
+   	  	\item (5 points) A possible state characteristic.
+   	  	\item (5 points) A recurrence that can find the optimal solution for the state.
+   	  	\item (5 points) A pseudo code version of a solution.
+   	  	\item (5 points) A coded version of your solution.
+   	  	\item (5 points) Runtime/memory analysis of your solution.
+   	  \end{itemize} 
+   	  
+   	  A senior developer is working with a junior developer on a large project. The junior developer makes $N$ pushes to complete the project. However, they keep making mistakes. Every push the junior developer will make $b_i$ bugs. The senior developer can spend time fixing up to $f_i$ bugs on any push. The senior develop cannot fix bugs that have not been created yet. Determine the fewest number of pushes in which a senior developer needs to fix bugs to ensure that the final version will have no bugs.
+      
+   \end{enumerate}
+   Formally, an inversion in a sequence is a pair of indices where the values are out of order with respect to each other. In other words for an array that is to be sorted in nondecreasing order, $\langle a_1, a_2, \dots , a_n\rangle$, an inversion is any pair ($i$, $j$), such that $i \leq j$, but $a_i > a_j$.
+   \begin{enumerate}
+   	  \setcounter{enumi}{2}
+      \item \textbf{Divide and Conquer/Data Structure.} (20 points) Make a algorithm in pseudo code that find the number of inversion of an array of length $N$ in $O(Nlog(N))$ time. You can assume the arrays is a permutation of values 1 to $N$. I recommend using either divide and conquer or Segment Trees to accomplish meet the runtime constraint. For an additional (5 points) write a program that solves the same problem.
+   
+   
+   	  \item (0 points) Here is an extra problem for practicing course concepts. You have a line of $N$ hardware components. There is exactly 1 component that is broken. You can test a continuous range of hardware components. However, testing is slow, and when you test a range with the broken component your hardware deteriorates. You want to only test the broken component at most $K$ times. Determine the least number of tests needed to isolate the broken component.
+   
+   \end{enumerate}
+   
+\end{document}

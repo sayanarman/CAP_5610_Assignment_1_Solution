@@ -1,0 +1,279 @@
+\documentclass[12pt,letterpaper, onecolumn]{exam}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{commath}
+\usepackage{physics}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{relsize}
+\usepackage{tikz}
+\usepackage[lmargin=71pt, tmargin=1.2in]{geometry}  %For centering solution box
+\usepackage{clrscode}
+\usepackage{listings}
+\usepackage{xcolor}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{patterns}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=1pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+%\lstset{style=mystyle}
+\lhead{CAP 5610 Assignment \#1 Solution\\}
+\rhead{Arman Sayan\\}
+% \chead{\hline} % Un-comment to draw line below header
+\thispagestyle{empty}   %For removing header/footer from page 1
+
+\begin{document}
+
+\begingroup  
+    \centering
+    \LARGE CAP 5610\\
+    \LARGE Assignment \#1 Solution\\[0.5em]
+    \large \today\\[0.5em]
+    \large Arman Sayan\par
+\endgroup
+\rule{\textwidth}{0.4pt}
+\bracketedpoints   %Self-explanatory
+\printanswers
+\renewcommand{\solutiontitle}{\noindent\textbf{Ans:}\enspace}   %Replace "Ans:" with starting keyword in solution box
+\qformat{\large \textbf{\thequestion \quad \thequestiontitle \quad [\thepoints] \hfill}}
+\renewcommand{\thepartno}{\arabic{partno}}
+\renewcommand{\partlabel}{\thepartno.}
+
+\begin{questions}
+    \titledquestion{Decision Tree Basics}[30]
+    
+    The goal of this assignment is to test and reinforce your understanding of Decision Tree Classifiers.
+    
+    \begin{parts}
+      \part[5]
+      How many unique, perfect binary trees of depth 3 can be drawn if we have 5 attributes? By depth, we mean the depth of the splits, not including the nodes that only contain a label (see Figure 1). So, a tree that checks just one attribute is a depth one tree. By perfect binary tree, we mean every node has either 0 or 2 children, and every leaf is at the same depth. Note also that a tree with the same attributes but organized at different depths is considered “unique”. Do not include trees that test the same attribute along the same path in the tree.
+
+            \begin{table}[!h]
+            \begin{center}
+            \begin{tabular}{c | c | c | c|}
+                \multirow{2}{4em}{} & \multicolumn{3}{c|}{ \textbf{y} } \\ 
+                \hline
+                \textbf{z} & \textbf{a} & \textbf{b} & \textbf{c} \\ 
+                %\multicolumn{4}{c|}{ y } \\
+                %&  & y & \\
+                \hline
+                T & 0.2 & 0.1 & 0.2 \\ 
+                \hline
+                F & 0.05 & 0.15 & 0.3 \\ 
+                \hline
+            \end{tabular}
+            \end{center}
+            \caption{Caption}
+            \end{table}
+      
+      \begin{solution}
+      
+      \end{solution}
+
+      \pagebreak
+      
+      \part[5]
+      In general, for a problem with A attributes, how many unique perfect D depth trees can be drawn? Assume A $>>$ D
+
+      \begin{solution}
+
+      \end{solution}
+      
+      \part[10]
+      Consider the following dataset from Table 1 for this problem. Given the five attributes on the left, we want to predict if the student got an A in the course. Create 2 decision trees for this dataset. For the first, only go to depth 1. For the second go to depth 2. For all trees, use the ID3 entropy algorithm from class. For each node of the tree, show the decision, the number of positive and negative examples and show the entropy at that node.
+
+      Hint: There are a lot of calculations here. You may want to do this programatically.
+
+                  \begin{table}[!h]
+            \begin{center}
+            \begin{tabular}{c | c | c | c|}
+                \multirow{2}{4em}{} & \multicolumn{3}{c|}{ \textbf{y} } \\ 
+                \hline
+                \textbf{z} & \textbf{a} & \textbf{b} & \textbf{c} \\ 
+                %\multicolumn{4}{c|}{ y } \\
+                %&  & y & \\
+                \hline
+                T & 0.2 & 0.1 & 0.2 \\ 
+                \hline
+                F & 0.05 & 0.15 & 0.3 \\ 
+                \hline
+            \end{tabular}
+            \end{center}
+            \caption{Toy Data-set for Task 1: Decision Tree Basics.}
+            \end{table}
+      
+      \begin{solution}
+
+      \end{solution}
+
+      \part[5]
+      Make one more decision tree. Use the same procedure as in (b), but make it depth 3. Now, given these three trees, which would you prefer if you wanted to predict the grades of 10 new students who are not included in this data-set? Justify your choice.
+
+      \begin{solution}
+      
+      \end{solution}
+
+      \part[5]
+      Consider a new definition of a “realizable” case: “For some fixed concept class $C$, such as decision trees, a realizable case is one where the algorithm gets a sample consistent with some concept $c \in C$. In other words, for decision trees, a case is realizable if there is some tree that perfectly classifies the data-set.
+
+      \begin{solution}
+      
+      \end{solution}
+      
+    \end{parts}
+
+    \pagebreak
+
+    \titledquestion{Application of Decision Tree on Real-Word Data-set}[25]
+
+    \begin{parts}
+
+        \part[10]
+        Train a decision tree classifier using the data file. Vary the cut-off depth from 2 to 10 and report the training accuracy for each cut-off depth $k$. Based on your results, select an optimal $k$.
+
+        \begin{solution}
+            Please check the source code included in the .zip file named as
+    
+            \begin{center}
+                \textbf{CAP\_5610\_Assignment\_1\_Solution\_Arman\_Sayan.ipynb}
+            \end{center}
+            
+            for the solution.
+        \end{solution}
+
+        \part[8]
+        Using the trained classifier with optimal cut-off depth $k$, classify the 99,762 instances from the test file and report the testing accuracy (the portion of testing instances classified correctly).
+
+        \begin{solution}
+            Please check the source code included in the .zip file named as
+    
+            \begin{center}
+                \textbf{CAP\_5610\_Assignment\_1\_Solution\_Arman\_Sayan.ipynb}
+            \end{center}
+            
+            for the solution.
+        \end{solution}
+
+        \part[7]
+        Do you see any over-fitting issues for this experiment? Report your observations.
+
+        \begin{solution}
+            Please check the source code included in the .zip file named as
+    
+            \begin{center}
+                \textbf{CAP\_5610\_Assignment\_1\_Solution\_Arman\_Sayan.ipynb}
+            \end{center}
+            
+            for the solution.
+        \end{solution}
+        
+    \end{parts}
+
+    \pagebreak
+
+    \titledquestion{Independent Events and Bayes Theorem}[20]
+
+    \begin{parts}
+
+        \part[5]
+        For events $A$, $B$ prove:
+
+        \begin{center}
+            $\displaystyle{P(A|B) = \frac{P(B|A)P(A)}{P(B|A)P(A) + P(B|\lnot A)P(\lnot A)}}$
+        \end{center}
+
+        ($\lnot A$ denotes the event that $A$ does not occur.)
+
+        \begin{solution}
+
+        \end{solution}
+
+        \part[15]
+        Let $X$, $Y$ , and $Z$ be random variables taking values in ${0, 1}$. The following table lists the probability of each possible assignment of 0 and 1 to the variables $X$, $Y$, and $Z$:
+
+                          \begin{table}[!h]
+            \begin{center}
+            \begin{tabular}{c | c | c | c | c}
+                \hline
+                \multirow{2}{4em}{} & \multicolumn{2}{c|}{ \textbf{$Z=0$}  } & \multicolumn{2}{c}{ \textbf{$Z=1$}  }\\ 
+                \hline
+                \textbf{} & $X=0$ & $X=1$ & $X=0$ & $X=1$ \\ 
+                %\multicolumn{4}{c|}{ y } \\
+                %&  & y & \\
+                \hline
+                $Y=0$ & 0.1 & 0.05 & 0.1 & 0.1 \\ 
+                \hline
+                $Y=1$ & 0.2 & 0.1 & 0.175 & 0.175 \\ 
+                \hline
+            \end{tabular}
+            \end{center}
+            \end{table}
+
+        \begin{parts}
+
+            \part[5]
+            Is $X$ independent of $Y$? Why or why not?
+    
+            \begin{solution}
+                
+            \end{solution}
+
+            \part[5]
+            Is $X$ conditionally independent of $Y$ given $Z$? Why or why not?
+    
+            \begin{solution}
+                
+            \end{solution}
+
+            \part[5]
+            Calculate $P (X \neq Y |Z = 0)$.
+    
+            \begin{solution}
+                
+            \end{solution}
+            
+        \end{parts}
+  
+    \end{parts}
+
+    \pagebreak
+
+    \titledquestion{Implementing Naive Bayes}[25]
+
+    Implement Naive Bayes Algorithm. Train your classifier on the training set that is given and report training accuracy, testing accuracy, and the amount of time spent training the classifier.
+
+    \begin{solution}
+        Please check the source code included in the .zip file named as
+
+        \begin{center}
+            \textbf{CAP\_5610\_Assignment\_1\_Solution\_Arman\_Sayan.ipynb}
+        \end{center}
+        
+        for the solution.
+    \end{solution}
+
+    \pagebreak
+    
+\end{questions}
+\end{document}
