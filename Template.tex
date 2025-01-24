@@ -17,6 +17,7 @@
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 \usetikzlibrary{arrows.meta}
 \usetikzlibrary{patterns}
+\graphicspath{ {./images/} }
 
 \lstdefinestyle{mystyle}{
     backgroundcolor=\color{backcolour},   
@@ -69,23 +70,11 @@
       \part[5]
       How many unique, perfect binary trees of depth 3 can be drawn if we have 5 attributes? By depth, we mean the depth of the splits, not including the nodes that only contain a label (see Figure 1). So, a tree that checks just one attribute is a depth one tree. By perfect binary tree, we mean every node has either 0 or 2 children, and every leaf is at the same depth. Note also that a tree with the same attributes but organized at different depths is considered “unique”. Do not include trees that test the same attribute along the same path in the tree.
 
-            \begin{table}[!h]
-            \begin{center}
-            \begin{tabular}{c | c | c | c|}
-                \multirow{2}{4em}{} & \multicolumn{3}{c|}{ \textbf{y} } \\ 
-                \hline
-                \textbf{z} & \textbf{a} & \textbf{b} & \textbf{c} \\ 
-                %\multicolumn{4}{c|}{ y } \\
-                %&  & y & \\
-                \hline
-                T & 0.2 & 0.1 & 0.2 \\ 
-                \hline
-                F & 0.05 & 0.15 & 0.3 \\ 
-                \hline
-            \end{tabular}
-            \end{center}
-            \caption{Caption}
-            \end{table}
+        \begin{figure}[h]
+            \centering
+            \includegraphics[width=\textwidth]{decision-tree-depth.png}
+            \caption{Example of perfect binary trees with different depths.}
+        \end{figure}
       
       \begin{solution}
       
@@ -94,7 +83,7 @@
       \pagebreak
       
       \part[5]
-      In general, for a problem with A attributes, how many unique perfect D depth trees can be drawn? Assume A $>>$ D
+      In general, for a problem with $A$ attributes, how many unique perfect $D$ depth trees can be drawn? Assume $A >> D$.
 
       \begin{solution}
 
@@ -105,23 +94,45 @@
 
       Hint: There are a lot of calculations here. You may want to do this programatically.
 
-                  \begin{table}[!h]
+        \begin{table}[!h]
             \begin{center}
-            \begin{tabular}{c | c | c | c|}
-                \multirow{2}{4em}{} & \multicolumn{3}{c|}{ \textbf{y} } \\ 
+            \begin{tabular}{c | c | c | c| c || c}
                 \hline
-                \textbf{z} & \textbf{a} & \textbf{b} & \textbf{c} \\ 
-                %\multicolumn{4}{c|}{ y } \\
-                %&  & y & \\
+                Early & Finished HMK & Senior & Likes Coffee & Liked The Last Jedi & A \\
                 \hline
-                T & 0.2 & 0.1 & 0.2 \\ 
                 \hline
-                F & 0.05 & 0.15 & 0.3 \\ 
+                1 & 1 & 0 & 0 & 1 & 1 \\
+                \hline
+                1 & 1 & 1 & 0 & 1 & 1 \\
+                \hline
+                0 & 0 & 1 & 0 & 0 & 0 \\
+                \hline
+                0 & 1 & 1 & 0 & 1 & 0 \\ 
+                \hline
+                0 & 1 & 1 & 0 & 0 & 1 \\
+                \hline
+                0 & 0 & 1 & 1 & 1 & 1 \\ 
+                \hline
+                1 & 0 & 0 & 0 & 1 & 0 \\
+                \hline
+                0 & 1 & 0 & 1 & 1 & 1 \\ 
+                \hline
+                0 & 0 & 1 & 0 & 1 & 1 \\
+                \hline
+                1 & 0 & 0 & 0 & 0 & 0 \\ 
+                \hline
+                1 & 1 & 1 & 0 & 0 & 1 \\
+                \hline
+                0 & 1 & 1 & 1 & 1 & 0 \\ 
+                \hline
+                0 & 0 & 0 & 0 & 1 & 0 \\
+                \hline
+                1 & 0 & 0 & 1 & 0 & 1 \\ 
                 \hline
             \end{tabular}
             \end{center}
             \caption{Toy Data-set for Task 1: Decision Tree Basics.}
-            \end{table}
+        \end{table}
       
       \begin{solution}
 
@@ -207,9 +218,45 @@
 
         \begin{solution}
 
+            We need to prove Bayes' theorem in the expanded form. We know from Bayes' rule that the definition of conditional probability is
+            
+            \begin{center}
+                $\displaystyle{P(A|B) = \frac{P(A \cap B)}{P(B)}}$
+            \end{center}
+
+            By a simple induction, we can write $\displaystyle{P(A \cap B)}$ as
+
+            \begin{center}
+                $\displaystyle{P(A \cap B)= P(B|A)P(A)}$
+            \end{center}
+
+            Furthermore, using the law of total probability, we can express $\displaystyle{P(B)}$ as
+
+            \begin{center}
+                $\displaystyle{P(B) = P(A \cap B) + P(\lnot A \cap B)}$
+            \end{center}
+
+            where by using the above induction again, we reveal that
+
+            \begin{center}
+                $\displaystyle{P(\lnot A \cap B)= P(B|\lnot A)P(\lnot A)}$
+            \end{center}
+
+            Using these definitions and substituting them in the original theorem, we can prove that 
+
+            \begin{center}
+                $\boldsymbol{\displaystyle{P(A|B) = \frac{P(A \cap B)}{P(B)}}}$
+
+                $\boldsymbol{\displaystyle{P(A|B) = \frac{P(B|A)P(A)}{P(A \cap B) + P(\lnot A \cap B)}}}$
+
+                $\boldsymbol{\displaystyle{P(A|B) = \frac{P(B|A)P(A)}{P(B|A)P(A) + P(B|\lnot A)P(\lnot A)}}}$
+            \end{center}
+
         \end{solution}
 
-        \part[15]
+        \pagebreak
+
+        \part
         Let $X$, $Y$ , and $Z$ be random variables taking values in ${0, 1}$. The following table lists the probability of each possible assignment of 0 and 1 to the variables $X$, $Y$, and $Z$:
 
                           \begin{table}[!h]
@@ -230,36 +277,309 @@
             \end{center}
             \end{table}
 
-        \begin{parts}
+        \begin{subparts}
 
-            \part[5]
+            \subpart[5]
             Is $X$ independent of $Y$? Why or why not?
     
             \begin{solution}
+                To determine if $X$ and $Y$ are independent, we need to check whether the joint probability
+                $P(X=x,Y=y)$ equals the product of the marginal probabilities 
+                $P(X=x) \cdot P(Y=y)$ for all possible values of $x$ and $y$. If this holds true for all combinations, 
+                $X$ and $Y$ are independent. Otherwise, they are dependent.
+
+                As the first step, we need to calculate the marginal probabilities.
+                The formula for marginal probability $P(X=x,Y=y)$ is given as
+
+                \begin{center}
+                    $\displaystyle{P(X=x,Y=y) = P(X=x,Y=y,Z=0) + P(X=x,Y=y,Z=1)}$
+                \end{center}
+
+                For each combination of $X$ and $Y$, we can calculate the marginal probabilities as follows:
+
+                \begin{itemize}
+                    \item $P(X=0,Y=0) = P(X=0,Y=0,Z=0) + P(X=0,Y=0,Z=1) = 0.1 + 0.1 = 0.2$
+                    \item $P(X=1,Y=0) = P(X=1,Y=0,Z=0) + P(X=1,Y=0,Z=1) = 0.05 + 0.1 = 0.15$
+                    \item $P(X=0,Y=1) = P(X=0,Y=1,Z=0) + P(X=0,Y=1,Z=1) = 0.2 + 0.175 = 0.375$
+                    \item $P(X=1,Y=1) = P(X=1,Y=1,Z=0) + P(X=1,Y=1,Z=1) = 0.1 + 0.175 = 0.275$
+                \end{itemize}
+
+                Now, we can calculate the marginal probabilities $P(X)$ and $P(Y)$ as follows:
+
+                \begin{itemize}
+                    \item $P(X=0) = P(X=0,Y=0) + P(X=0,Y=1) = 0.2 + 0.375 = 0.575$
+                    \item $P(X=1) = P(X=1,Y=0) + P(X=1,Y=1) = 0.15 + 0.275 = 0.425$
+                    \item $P(Y=0) = P(X=0,Y=0) + P(X=1,Y=0) = 0.2 + 0.15 = 0.35$
+                    \item $P(Y=1) = P(X=0,Y=1) + P(X=1,Y=1) = 0.375 + 0.275 = 0.65$
+                \end{itemize}
+
+                The second step is to check the independce, which means for $X$ and $Y$ to be independent, the following must hold:
+
+                \begin{center}
+                    $\displaystyle{P(X=x,Y=y) = P(X=x) \cdot P(Y=y)}$
+                \end{center}
+                
+                Check $P(X=0,Y=0)$:
+
+                \begin{center}
+                    $P(X=0,Y=0) = 0.2$
+
+                    $P(X=0) \cdot P(Y=0) = 0.575 \cdot 0.35 = 0.20125$
+
+                    $\boldsymbol{P(X=0,Y=0) \neq P(X=0) \cdot P(Y=0)}$
+                \end{center}
+
+                Check $P(X=1,Y=0)$:
+
+                \begin{center}
+                    $P(X=1,Y=0) = 0.15$
+
+                    $P(X=1) \cdot P(Y=0) = 0.425 \cdot 0.35 = 0.14875$
+
+                    $\boldsymbol{P(X=1,Y=0) \neq P(X=1) \cdot P(Y=0)}$
+                \end{center}
+
+                Check $P(X=0,Y=1)$:
+
+                \begin{center}
+                    $P(X=0,Y=1) = 0.375$
+
+                    $P(X=0) \cdot P(Y=1) = 0.575 \cdot 0.65 = 0.37375$
+
+                    $\boldsymbol{P(X=0,Y=1) \neq P(X=0) \cdot P(Y=1)}$
+                \end{center}
+
+                Check $P(X=1,Y=1)$:
+
+                \begin{center}
+                    $P(X=1,Y=1) = 0.275$
+
+                    $P(X=1) \cdot P(Y=1) = 0.425 \cdot 0.65 = 0.27625$
+
+                    $\boldsymbol{P(X=1,Y=1) \neq P(X=1) \cdot P(Y=1)}$
+                \end{center}
+
+                The values $P(X=x,Y=y)$ and $P(X=x)P(Y=y)$ are not exactly equal for all combinations. 
+                Therefore, \textbf{$\boldsymbol{X}$ and $\textbf{Y}$ are not independent}.
                 
             \end{solution}
 
-            \part[5]
+            \pagebreak
+
+            \subpart[5]
             Is $X$ conditionally independent of $Y$ given $Z$? Why or why not?
     
             \begin{solution}
+                To determine whether $X$ is conditionally independent of $Y$ given 
+                $Z$, we need to verify if the following holds for all values of 
+                $X$, $Y$, and $Z$:
                 
+                \begin{center}
+                    $\displaystyle{P(X|Y,Z) = P(X|Z)}$
+                \end{center}
+
+                The formula for conditional probability $P(X|Y,Z)$ is given as
+
+                \begin{center}
+                    $\displaystyle{P(X|Y,Z) = \frac{P(X,Y,Z)}{P(Y,Z)}}$
+                \end{center}
+
+                The first step is to calculate the joint probabilities $P(X,Y,Z)$ for all combinations of $X$, $Y$, and $Z$.
+                We can use the values from the table as it is.
+
+                The second step is to calculate the marginal probabilities $P(Y,Z)$ for all combinations of $Y$ and $Z$.
+
+                \begin{itemize}
+                    \item $P(Y=0,Z=0) = P(X=0,Y=0,Z=0) + P(X=1,Y=0,Z=0) = 0.1 + 0.05 = 0.15$
+                    \item $P(Y=1,Z=0) = P(X=0,Y=1,Z=0) + P(X=1,Y=1,Z=0) = 0.2 + 0.1 = 0.3$
+                    \item $P(Y=0,Z=1) = P(X=0,Y=0,Z=1) + P(X=1,Y=0,Z=1) = 0.1 + 0.1 = 0.2$
+                    \item $P(Y=1,Z=1) = P(X=0,Y=1,Z=1) + P(X=1,Y=1,Z=1) = 0.175 + 0.175 = 0.35$
+                \end{itemize}
+
+                The third step is to calculate the conditional probabilities $P(X|Y,Z)$ and $P(X|Z)$. We will have 2 cases to check.
+
+                The first case is when $Z=0$:
+
+                First, we compute the probabilities $P(Y, Z=0)$ which are obtained by summing over all $X$:
+
+                \begin{itemize}
+                    \item $P(Y=0, Z=0) = P(X=0, Y=0, Z=0) + P(X=1, Y=0, Z=0) = 0.1 + 0.05 = 0.15$
+                    \item $P(Y=1, Z=0) = P(X=0, Y=1, Z=0) + P(X=1, Y=1, Z=0) = 0.2 + 0.1 = 0.3$
+                    
+                    \begin{center}
+                        $P(Z=0) = P(Y=0, Z=0) + P(Y=1, Z=0) = 0.15 + 0.3 = 0.45$
+                    \end{center}
+                \end{itemize}
+
+                Second, we compute the probabilities $P(X, Z=0)$ which are obtained by summing over all $Y$:
+
+                \begin{itemize}
+                    \item $P(X=0, Z=0) = P(X=0, Y=0, Z=0) + P(X=0, Y=1, Z=0) = 0.1 + 0.2 = 0.3$
+                    \item $P(X=1, Z=0) = P(X=1, Y=0, Z=0) + P(X=1, Y=1, Z=0) = 0.05 + 0.1 = 0.15$
+                \end{itemize}
+
+                Third, we compute the probability $P(X|Z=0)$:
+
+                \begin{itemize}
+                    \item $\displaystyle{P(X=0|Z=0) = \frac{P(X=0, Z=0)}{P(Z=0)} = \frac{0.3}{0.45} = 0.666}$
+                    \item $\displaystyle{P(X=1|Z=0) = \frac{P(X=1, Z=0)}{P(Z=0)} = \frac{0.15}{0.45} = 0.333}$
+                \end{itemize}
+
+                Fourth, we compute the probability $P(X|Y, Z=0)$:
+
+                \begin{itemize}
+                    \item For $Y=0$:
+                    \begin{center}
+                    $\displaystyle{P(X=0|Y=0, Z=0) = \frac{P(X=0, Y=0, Z=0)}{P(Y=0, Z=0)} = \frac{0.1}{0.15} = 0.666}$
+
+                    $\displaystyle{P(X=1|Y=0, Z=0) = \frac{P(X=1, Y=0, Z=0)}{P(Y=0, Z=0)} = \frac{0.05}{0.15} = 0.333}$
+                    \end{center}
+
+                    \item For $Y=1$:
+                    \begin{center}
+                    $\displaystyle{P(X=0|Y=1, Z=0) = \frac{P(X=0, Y=1, Z=0)}{P(Y=1, Z=0)} = \frac{0.2}{0.3} = 0.666}$
+
+                    $\displaystyle{P(X=1|Y=1, Z=0) = \frac{P(X=1, Y=1, Z=0)}{P(Y=1, Z=0)} = \frac{0.1}{0.3} = 0.333}$
+                    \end{center}
+                \end{itemize}
+
+                Since $P(X|Y, Z=0) = P(X|Z=0)$ for all values of $X$, the condition holds for $Z=0$.
+
+                The second case is when $Z=1$:
+
+                First, we compute the probabilities $P(Y, Z=1)$ which are obtained by summing over all $X$:
+
+                \begin{itemize}
+                    \item $P(Y=0, Z=1) = P(X=0, Y=0, Z=1) + P(X=1, Y=0, Z=1) = 0.1 + 0.1 = 0.2$
+                    \item $P(Y=1, Z=1) = P(X=0, Y=1, Z=1) + P(X=1, Y=1, Z=1) = 0.175 + 0.175 = 0.35$
+                    
+                    \begin{center}
+                        $P(Z=1) = P(Y=0, Z=1) + P(Y=1, Z=1) = 0.2 + 0.35 = 0.55$
+                    \end{center}
+                \end{itemize}
+
+                Second, we compute the probabilities $P(X, Z=1)$ which are obtained by summing over all $Y$:
+
+                \begin{itemize}
+                    \item $P(X=0, Z=1) = P(X=0, Y=0, Z=1) + P(X=0, Y=1, Z=1) = 0.1 + 0.175 = 0.275$
+                    \item $P(X=1, Z=1) = P(X=1, Y=0, Z=1) + P(X=1, Y=1, Z=1) = 0.1 + 0.175 = 0.275$
+                \end{itemize}
+
+                Third, we compute the probability $P(X|Z=1)$:
+
+                \begin{itemize}
+                    \item $\displaystyle{P(X=0|Z=1) = \frac{P(X=0, Z=1)}{P(Z=1)} = \frac{0.275}{0.55} = 0.5}$
+                    \item $\displaystyle{P(X=1|Z=1) = \frac{P(X=1, Z=1)}{P(Z=1)} = \frac{0.275}{0.55} = 0.5}$
+                \end{itemize}
+
+                Fourth, we compute the probability $P(X|Y, Z=1)$:
+
+                \begin{itemize}
+                    \item For $Y=0$:
+                    \begin{center}
+                    $\displaystyle{P(X=0|Y=0, Z=1) = \frac{P(X=0, Y=0, Z=1)}{P(Y=0, Z=1)} = \frac{0.1}{0.2} = 0.5}$
+
+                    $\displaystyle{P(X=1|Y=0, Z=1) = \frac{P(X=1, Y=0, Z=1)}{P(Y=0, Z=1)} = \frac{0.1}{0.2} = 0.5}$
+                    \end{center}
+
+                    \item For $Y=1$:
+                    \begin{center}
+                    $\displaystyle{P(X=0|Y=1, Z=1) = \frac{P(X=0, Y=1, Z=1)}{P(Y=1, Z=1)} = \frac{0.175}{0.35} = 0.5}$
+
+                    $\displaystyle{P(X=1|Y=1, Z=1) = \frac{P(X=1, Y=1, Z=1)}{P(Y=1, Z=1)} = \frac{0.175}{0.35} = 0.5}$
+                    \end{center}
+                \end{itemize}
+
+                Like in the first case, Since $P(X|Y, Z=1) = P(X|Z=1)$ for all values of $X$, the condition holds for $Z=1$.
+
+                For all values of $Z$, we proved that 
+
+                \begin{center}
+                    $\displaystyle{P(X|Y,Z) = P(X|Z)}$
+                \end{center}
+
+                Thus, \textbf{X is conditionally independent of Y given Z}.
+
             \end{solution}
 
-            \part[5]
+            \pagebreak
+
+            \subpart[5]
             Calculate $P (X \neq Y |Z = 0)$.
     
             \begin{solution}
+
+                To compute $P(X \neq Y | Z = 0)$, we need to calculate the probability of events where $X \neq Y$, 
+                such as $X=0$ and $Y=1$, or $X=1$ and $Y=0$, conditioned on $Z = 0$.
+
+                We can calculate the probability as follows:
+
+                \begin{center}
+                    $\displaystyle{P(X \neq Y | Z = 0) = \frac{P(X \neq Y, Z = 0)}{P(Z=0)}}$
+                \end{center}
+
+                Furthermore, we can calculate $P(X \neq Y, Z = 0)$ as
+
+                \begin{center}
+                    $\displaystyle{P(X \neq Y, Z = 0) = P(X=0, Y=1, Z=0) + P(X=1, Y=0, Z=0)}$
+                \end{center}
+
+                From the table, we can find the values as
+
+                \begin{itemize}
+                    \item $P(X=0, Y=1, Z=0) = 0.2$
+                    \item $P(X=1, Y=0, Z=0) = 0.05$
+                    
+                \begin{center}
+                    $\displaystyle{P(X \neq Y, Z = 0) = 0.2 + 0.05 = 0.25}$
+                \end{center}
+                \end{itemize}
+
+                In addition, we need to calculate $P(Z=0)$ by summing all joint probabilities where $Z=0$:
+
+                \begin{center}
+                    $\displaystyle{P(Z=0) = P(X=0, Y=0, Z=0) + P(X=1, Y=0, Z=0)}$
+
+                    $\displaystyle{+ P(X=0, Y=1, Z=0) + P(X=1, Y=1, Z=0)}$
+
+                    $\displaystyle{= 0.1 + 0.05 + 0.2 + 0.1 = 0.45}$
+                \end{center}
+
+                Finally, by substituting the values, we can calculate $P(X \neq Y | Z = 0)$ as
+
+                \begin{center}
+                    $\boldsymbol{\displaystyle{P(X \neq Y | Z = 0) = \frac{0.25}{0.45} \approx 0.5556}}$
+                \end{center}
+                
                 
             \end{solution}
             
-        \end{parts}
+        \end{subparts}
   
     \end{parts}
 
     \pagebreak
 
     \titledquestion{Implementing Naive Bayes}[25]
+
+    You will now learn how to use Naive Bayes Algorithm to solve a real-world problem: text cat-
+    egorization. Text categorization (also referred to as text classification) i s t he t ask o f assigning
+    documents to one or more topics. For our homework, we will use a benchmark dataset that is fre-
+    quently used in text categorization problems. This dataset, Reuters-21578, consists of documents that
+    appeared in Reuters newswire in 1987. Each document was then manually categorized into a topic
+    among over 100 topics. In this homework, we are only interested in earn and acquisition (acq) topics,
+    so we will use a shortened version of the dataset (documents assigned to topics other than “earn” or
+    “acq” are not in the dataset provided for the homework). As features, we will use the frequency
+    (counts) of each word that occurred in the document. This model is known as the bag-of-words model
+    and it is frequently used in text categorization. You can download Assignment 2 data from the Canvas.
+    In this folder, you will find:
+
+    \begin{itemize}
+        \item \textbf{train.csv:} Training data. Each row represents a document, and each column separated by
+        commas represents features (word counts). There are 4527 documents and 5180 words.
+        \item \textbf{train labels.txt:} labels for the training data
+        \item \textbf{test.csv:} Test data, 1806 documents and 5180 words
+    \end{itemize}
 
     Implement Naive Bayes Algorithm. Train your classifier on the training set that is given and report training accuracy, testing accuracy, and the amount of time spent training the classifier.
 
