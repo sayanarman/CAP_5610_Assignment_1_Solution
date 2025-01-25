@@ -77,7 +77,50 @@
         \end{figure}
       
       \begin{solution}
-      
+
+        Based on these definitions, to calculate the number of unique, perfect binary trees of depth 3 with 5 attributes,
+        we need to clear out some key facts about this tree.
+
+        First of all, since the depth of the tree is 3,
+        This means the tree has 7 internal nodes, namely 1 root, 2 children, and 4 grandchildren, 
+        and every path from the root to a leaf is of length 3.
+
+        Secondly, since this tree has the perfect binary tree structure, every internal node should split into exactly two children,
+        and every leaf should be at the same depth.
+
+        Now that we clearly understand the structure of the tree, we can calculate the number of unique trees.
+
+        The first step is to choose 3 attributes for a path. There are 5 attributes which can be (A,B,C,D,E),
+        and for any given path, we need to select 3 distinct attributes. The number of ways to do this is
+
+        \begin{center}
+            $\displaystyle{\binom{5}{3} = \frac{5!}{3!(5-3)!} = 10}$
+        \end{center}
+
+        So, there are 10 ways to choose which 3 attributes will appear along a given path.
+
+        The second step is to choose the order of the attributes along the path.
+        Once we have selected 3 attributes for a path, we can arrange them in $3!$ ways
+        since the order of the attributes matters.
+
+        \begin{center}
+            $\displaystyle{3! = 6}$
+        \end{center}
+
+        So, for each choice of attributes, there are $6$ unique ways to organize them along a path.
+
+        Since the tree is a perfect binary tree, all paths must have the same set of attributes arranged in the same way.
+
+        Thus, we only count how many ways we can assign attributes to the tree consistently, which is 
+
+        \begin{center}
+            Number of ways to choose 3 attributes $\displaystyle{\cross}$ Number of ways to arrange them in depth order
+
+            $\boldsymbol{\displaystyle{\binom{5}{3} \cdot 3! = 10 \cdot 6 = 60}}$
+        \end{center}
+
+        Therefore, there are $\boldsymbol{60}$ unique, perfect binary trees of depth 3 with 5 attributes.
+
       \end{solution}
 
       \pagebreak
@@ -87,7 +130,34 @@
 
       \begin{solution}
 
+        To calculate the number of unique perfect binary trees of depth 
+        $D$ with $A$ attributes $A >> D$, we need to generalize the reasoning we used in earlier question.
+
+        The first step is to choose $D$ attributes from the $A$ available attributes.
+        The number of ways to do this is actually
+
+        \begin{center}
+            $\displaystyle{\binom{A}{D} = \frac{A!}{D!(A-D)!}}$
+        \end{center}
+
+        The second step is Once the $D$ attributes are chosen,
+        we must arrange them in a specific order to determine their position in the tree, which might be root, children, grandchildren, etc.,
+        the number of ways to arrange $D$ attributes is
+
+        \begin{center}
+            $\displaystyle{D!}$
+        \end{center}
+
+        The last step is to combine these values to calculate the total number of unique trees.
+        The general formula for total number of unique perfect binary trees of depth $D$ with $A$ attributes is
+
+        \begin{center}
+            \textbf{Total Trees} $\boldsymbol{\displaystyle{ = \binom{A}{D} \cdot D! = \frac{A!}{D!(A-D)!} \cdot D! = \frac{A!}{(A-D)!}}}$
+        \end{center}
+
       \end{solution}
+
+      \pagebreak
       
       \part[10]
       Consider the following dataset from Table 1 for this problem. Given the five attributes on the left, we want to predict if the student got an A in the course. Create 2 decision trees for this dataset. For the first, only go to depth 1. For the second go to depth 2. For all trees, use the ID3 entropy algorithm from class. For each node of the tree, show the decision, the number of positive and negative examples and show the entropy at that node.
@@ -136,19 +206,249 @@
       
       \begin{solution}
 
+        To create two decision trees (depth 1 and depth 2) using the ID3 entropy
+        algorithm, we need to calculate the entropy for the root node and each split, 
+        and then select the attribute that minimizes the weighted average entropy, 
+        namely maximizes information gain at each step, and split the dataset accordingly.
+
+        The first step is to calculate the entropy for the root node.
+
+        \begin{center}
+            $\displaystyle{H(S) = -p_1 \log_2 p_1 - p_0 \log_2 p_0}$
+        \end{center}
+
+        where $p_1$ is the probability of $(A=1)$ 
+        and $p_0$ is the probability of $(A=0)$.
+
+        The second step is for each attribute, we need to calculate the 
+        weighted average entropy of splitting on that attribute as below
+
+        \begin{center}
+            $\displaystyle{H_{split} = \sum_{v \in Values} \frac{|S_v|}{|S|} H(S_v)}$
+        \end{center}
+
+        where $S_v$ is the subset of the dataset where the attribute takes 
+        the value $v$, and $H(S_v)$ is its entropy.
+
+        The third step is to calculate the information gain for each attribute, which is
+
+        \begin{center}
+            $\displaystyle{IG = H(S) - H_{split}}$
+        \end{center}
+
+        The attribute with the highest information gain is selected as the attribute to be splitted.
+
+        The last step is to repeat this process for each subset until the tree reaches the desired depth.
+
+        The Python implementation of this algorithm is below:
+
+        \begin{lstlisting}[language=Python, style=mystyle]
+import pandas as pd
+import numpy as np
+from math import log2
+from collections import Counter
+from graphviz import Digraph
+
+# Data setup
+data = 
+[
+    [1, 1, 0, 0, 1, 1],
+    [1, 1, 1, 0, 1, 1],
+    [0, 0, 1, 0, 0, 0],
+    [0, 1, 1, 0, 1, 0],
+    [0, 1, 1, 0, 0, 1],
+    [0, 0, 1, 1, 1, 1],
+    [1, 0, 0, 0, 1, 0],
+    [0, 1, 0, 1, 1, 1],
+    [0, 0, 1, 0, 1, 1],
+    [1, 0, 0, 0, 0, 0],
+    [1, 1, 1, 0, 0, 1],
+    [0, 1, 1, 1, 1, 0],
+    [0, 0, 0, 0, 1, 0],
+    [1, 0, 0, 1, 0, 1],
+]
+columns = ["Early", "Finished HMK", "Senior", "Likes Coffee", "Liked The Last Jedi", "A"]
+df = pd.DataFrame(data, columns=columns)
+
+# Entropy calculation
+def entropy(labels):
+    total = len(labels)
+    counts = Counter(labels)
+    return -sum((count / total) * log2(count / total) for count in counts.values() if count > 0)
+
+
+# Information gain calculation
+def information_gain(df, attribute, target="A"):
+    total_entropy = entropy(df[target])
+    values = df[attribute].unique()
+    weighted_entropy = sum(
+        (len(subset) / len(df)) * entropy(subset[target])
+        for value in values
+        if (subset := df[df[attribute] == value]) is not None
+    )
+    return total_entropy - weighted_entropy
+
+# ID3 algorithm
+def id3(df, attributes, target="A", depth=1):
+    node_entropy = entropy(df[target])
+    if depth == 0 or node_entropy == 0 or len(attributes) == 0:
+        most_common_label = Counter(df[target]).most_common(1)[0][0]
+        return {"label": most_common_label, "count": len(df), "entropy": node_entropy}
+
+    best_attribute = max(attributes, key=lambda attr: information_gain(df, attr, target))
+    tree = {"attribute": best_attribute, "entropy": node_entropy, "children": {}}
+
+    for value in df[best_attribute].unique():
+        subset = df[df[best_attribute] == value]
+        if len(subset[target].unique()) == 1:
+            label = subset[target].iloc[0]
+            tree["children"][value] = {"label": label, "count": len(subset), "entropy": entropy(subset[target])}
+        else:
+            remaining_attributes = [attr for attr in attributes if attr != best_attribute]
+            tree["children"][value] = id3(subset, remaining_attributes, target, depth - 1)
+
+    return tree
+
+# Visualize the decision tree
+def visualize_tree(tree, graph=None, parent=None, edge_label=None):
+    if graph is None:
+        graph = Digraph(format="png")
+        graph.attr("node", shape="box")
+
+    if "label" in tree:
+        node_label = f"Leaf: {tree['label']}\nCount: {tree['count']}\nEntropy: {tree['entropy']:.4f}"
+        node_id = str(id(tree))
+        graph.node(node_id, label=node_label)
+        if parent:
+            graph.edge(parent, node_id, label=edge_label)
+    else:
+        node_label = f"{tree['attribute']}\nEntropy: {tree['entropy']:.4f}"
+        node_id = str(id(tree))
+        graph.node(node_id, label=node_label)
+        if parent:
+            graph.edge(parent, node_id, label=edge_label)
+
+        for value, child in tree["children"].items():
+            visualize_tree(child, graph, parent=node_id, edge_label=str(value))
+
+    return graph
+
+# Build trees
+depth_1_tree = id3(df, columns[:-1], depth=1)
+depth_2_tree = id3(df, columns[:-1], depth=2)
+
+# Save visualizations
+visualize_tree(depth_1_tree).render("depth_1_tree", cleanup=True)
+visualize_tree(depth_2_tree).render("depth_2_tree", cleanup=True)
+        \end{lstlisting}
+
+        The decision trees for depth 1 and depth 2 computed by this Python code 
+        are visualized in the following figures:
+
+        
+        \begin{figure}[H]
+            \begin{center}
+                \begin{minipage}{0.85\textwidth}
+                        \centering
+                        \includegraphics[width=0.8\textwidth]{depth_1_tree.png}
+                        \caption{Decision Tree with Depth 1}
+                \end{minipage}
+            \end{center}
+        \end{figure}
+        
+
+        \begin{figure}[H]
+            \begin{minipage}{\textwidth} 
+                \centering
+                \includegraphics[width=\textwidth]{depth_2_tree.png}
+                \caption{Decision Tree with Depth 2}
+            \end{minipage}
+        \end{figure}
+
       \end{solution}
+
+      \pagebreak
 
       \part[5]
-      Make one more decision tree. Use the same procedure as in (b), but make it depth 3. Now, given these three trees, which would you prefer if you wanted to predict the grades of 10 new students who are not included in this data-set? Justify your choice.
+      Make one more decision tree. Use the same procedure as in (3), but make it depth 3. Now, given these three trees, which would you prefer if you wanted to predict the grades of 10 new students who are not included in this data-set? Justify your choice.
 
       \begin{solution}
+
+        The decision tree for depth 3 computed by the same Python code used in (3)
+        is visualized in the following figure:
+
+        \begin{figure}[H]
+            \begin{minipage}{\textwidth} 
+                \centering
+                \includegraphics[width=\textwidth]{depth_3_tree.png}
+                \caption{Decision Tree with Depth 3}
+            \end{minipage}
+        \end{figure}
+
+        Given these three trees, if we wanted to predict the grades of 10 new students who are not included in this data-set,
+
+        I would prefer the decision tree with depth 2. The reason for this choice is that the decision tree with depth 2 is the overall model among the three trees.
+
+        The decision tree with depth 1 is too simple and may not capture the underlying patterns in the data,
+        while the decision tree with depth 3 is too complex and may overfit the training data.
+
+        The decision tree with depth 2 strikes a good balance between simplicity and complexity,
+        making it more likely to generalize well to new, unseen data.
+
+        Furthermore, we can also compare the average entropy of the leaf nodes for each tree.
+        A lower average entropy at the leaves implies a more confident prediction at each leaf.
+        This would make it preferable if accuracy is the primary goal.
+
+        Based on these calculated decision trees, the average entropy of the leaf nodes for each tree is as follows:
+        
+        \begin{itemize}
+            \item Depth 1 Tree: 0.9242
+            \item Depth 2 Tree: 0.4305
+            \item Depth 3 Tree: 0.3197
+        \end{itemize}
+
+        We can see that the average entropy of the leaf nodes decreases as the depth of the tree increases.
+        This implies that the decision tree with depth 3 is more confident in its predictions compared to the other trees.
+        However, there is not significant difference between depth 2 value and depth 3 value and
+        there is still the chance that a decision tree with depth 3 might overfit the data, 
+        making it less generalizable to new students.
+
       
       \end{solution}
+
+      \pagebreak
 
       \part[5]
       Consider a new definition of a “realizable” case: “For some fixed concept class $C$, such as decision trees, a realizable case is one where the algorithm gets a sample consistent with some concept $c \in C$. In other words, for decision trees, a case is realizable if there is some tree that perfectly classifies the data-set.
 
+      If the number of attributes $A$ is sufficiently large, under what condition would a dataset not 
+      be realizable for decision trees of no fixed depth? Prove that the dataset is unrealizable if 
+      and only if that condition is true.
+
       \begin{solution}
+
+        For a dataset to not be realizable for decision trees of depth $n$,
+        there should be at least one combination of input attributes and labels 
+        in the dataset that cannot be represented or separated by a decision tree 
+        of depth $n$, regardless of the size of the attribute space $A$.
+
+        For instance, a decision tree of depth $n$ can split the data into at most $2^n$
+        leaf nodes, and each leaf node corresponds to one subset of the input space uniquely.
+
+        So, if the dataset has more unique combinations of input features that 
+        need to be classified differently than can be represented by $2^n$ leaf nodes,
+        then the dataset cannot be realizable for a decision tree of depth $n$.
+
+        Formally, for a dataset with $m$ distinct examples, a depth with $n$
+        decision tree can perfectly classify the dataset only if $m \leq 2^n$.
+
+        It is also important to note that the size of the attribute space $A$ does 
+        not affect the realizability of the dataset. A larger $A$ provides more potential 
+        splits for the tree. However, the depth of the tree, not the attribute count, 
+        determines the maximum number of partitions $2^n$ that the tree can form.
+
+        Therefore, \textbf{if $\boldsymbol{m > 2^n}$, the dataset is not realizable for decision trees of $\boldsymbol{n}$,
+        regardless of the size of the attribute space $\boldsymbol{A}$}.
       
       \end{solution}
       
