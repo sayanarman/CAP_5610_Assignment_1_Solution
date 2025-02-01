@@ -65,17 +65,17 @@
 \begin{questions}
     \titledquestion{Decision Tree Basics}[30]
     
-    The goal of this assignment is to test and reinforce your understanding of Decision Tree Classifiers.
+    %The goal of this assignment is to test and reinforce your understanding of Decision Tree Classifiers.
     
     \begin{parts}
-      \part[5]
-      How many unique, perfect binary trees of depth 3 can be drawn if we have 5 attributes? By depth, we mean the depth of the splits, not including the nodes that only contain a label (see Figure 1). So, a tree that checks just one attribute is a depth one tree. By perfect binary tree, we mean every node has either 0 or 2 children, and every leaf is at the same depth. Note also that a tree with the same attributes but organized at different depths is considered “unique”. Do not include trees that test the same attribute along the same path in the tree.
+      \part[5] Solution for Part 1:
+      %How many unique, perfect binary trees of depth 3 can be drawn if we have 5 attributes? By depth, we mean the depth of the splits, not including the nodes that only contain a label (see Figure 1). So, a tree that checks just one attribute is a depth one tree. By perfect binary tree, we mean every node has either 0 or 2 children, and every leaf is at the same depth. Note also that a tree with the same attributes but organized at different depths is considered “unique”. Do not include trees that test the same attribute along the same path in the tree.
 
-        \begin{figure}[h]
-            \centering
-            \includegraphics[width=\textwidth]{decision-tree-depth.png}
-            \caption{Example of perfect binary trees with different depths.}
-        \end{figure}
+        %\begin{figure}[h]
+        %    \centering
+        %    \includegraphics[width=\textwidth]{decision-tree-depth.png}
+        %    \caption{Example of perfect binary trees with different depths.}
+        %\end{figure}
       
       \begin{solution}
 
@@ -126,8 +126,8 @@
 
       \pagebreak
       
-      \part[5]
-      In general, for a problem with $A$ attributes, how many unique perfect $D$ depth trees can be drawn? Assume $A >> D$.
+      \part[5] Solution for Part 2:
+      %In general, for a problem with $A$ attributes, how many unique perfect $D$ depth trees can be drawn? Assume $A >> D$.
 
       \begin{solution}
 
@@ -160,50 +160,50 @@
 
       \pagebreak
       
-      \part[10]
-      Consider the following dataset from Table 1 for this problem. Given the five attributes on the left, we want to predict if the student got an A in the course. Create 2 decision trees for this dataset. For the first, only go to depth 1. For the second go to depth 2. For all trees, use the ID3 entropy algorithm from class. For each node of the tree, show the decision, the number of positive and negative examples and show the entropy at that node.
+      \part[10] Solution for Part 3:
+      %Consider the following dataset from Table 1 for this problem. Given the five attributes on the left, we want to predict if the student got an A in the course. Create 2 decision trees for this dataset. For the first, only go to depth 1. For the second go to depth 2. For all trees, use the ID3 entropy algorithm from class. For each node of the tree, show the decision, the number of positive and negative examples and show the entropy at that node.
 
-      Hint: There are a lot of calculations here. You may want to do this programatically.
+      %Hint: There are a lot of calculations here. You may want to do this programatically.
 
-        \begin{table}[!h]
-            \begin{center}
-            \begin{tabular}{c | c | c | c| c || c}
-                \hline
-                Early & Finished HMK & Senior & Likes Coffee & Liked The Last Jedi & A \\
-                \hline
-                \hline
-                1 & 1 & 0 & 0 & 1 & 1 \\
-                \hline
-                1 & 1 & 1 & 0 & 1 & 1 \\
-                \hline
-                0 & 0 & 1 & 0 & 0 & 0 \\
-                \hline
-                0 & 1 & 1 & 0 & 1 & 0 \\ 
-                \hline
-                0 & 1 & 1 & 0 & 0 & 1 \\
-                \hline
-                0 & 0 & 1 & 1 & 1 & 1 \\ 
-                \hline
-                1 & 0 & 0 & 0 & 1 & 0 \\
-                \hline
-                0 & 1 & 0 & 1 & 1 & 1 \\ 
-                \hline
-                0 & 0 & 1 & 0 & 1 & 1 \\
-                \hline
-                1 & 0 & 0 & 0 & 0 & 0 \\ 
-                \hline
-                1 & 1 & 1 & 0 & 0 & 1 \\
-                \hline
-                0 & 1 & 1 & 1 & 1 & 0 \\ 
-                \hline
-                0 & 0 & 0 & 0 & 1 & 0 \\
-                \hline
-                1 & 0 & 0 & 1 & 0 & 1 \\ 
-                \hline
-            \end{tabular}
-            \end{center}
-            \caption{Toy Data-set for Task 1: Decision Tree Basics.}
-        \end{table}
+        %\begin{table}[!h]
+        %    \begin{center}
+        %    \begin{tabular}{c | c | c | c| c || c}
+        %        \hline
+        %        Early & Finished HMK & Senior & Likes Coffee & Liked The Last Jedi & A \\
+        %        \hline
+        %        \hline
+        %        1 & 1 & 0 & 0 & 1 & 1 \\
+        %        \hline
+        %        1 & 1 & 1 & 0 & 1 & 1 \\
+        %        \hline
+        %        0 & 0 & 1 & 0 & 0 & 0 \\
+        %        \hline
+        %        0 & 1 & 1 & 0 & 1 & 0 \\ 
+        %        \hline
+        %        0 & 1 & 1 & 0 & 0 & 1 \\
+        %        \hline
+        %        0 & 0 & 1 & 1 & 1 & 1 \\ 
+        %        \hline
+        %        1 & 0 & 0 & 0 & 1 & 0 \\
+        %        \hline
+        %        0 & 1 & 0 & 1 & 1 & 1 \\ 
+        %        \hline
+        %        0 & 0 & 1 & 0 & 1 & 1 \\
+        %        \hline
+        %        1 & 0 & 0 & 0 & 0 & 0 \\ 
+        %        \hline
+        %        1 & 1 & 1 & 0 & 0 & 1 \\
+        %        \hline
+        %        0 & 1 & 1 & 1 & 1 & 0 \\ 
+        %        \hline
+        %        0 & 0 & 0 & 0 & 1 & 0 \\
+        %        \hline
+        %        1 & 0 & 0 & 1 & 0 & 1 \\ 
+        %        \hline
+        %    \end{tabular}
+        %    \end{center}
+        %    \caption{Toy Data-set for Task 1: Decision Tree Basics.}
+        %\end{table}
       
       \begin{solution}
 
@@ -273,8 +273,8 @@
 
       \pagebreak
 
-      \part[5]
-      Make one more decision tree. Use the same procedure as in (3), but make it depth 3. Now, given these three trees, which would you prefer if you wanted to predict the grades of 10 new students who are not included in this data-set? Justify your choice.
+      \part[5] Solution for Part 4:
+      %Make one more decision tree. Use the same procedure as in (3), but make it depth 3. Now, given these three trees, which would you prefer if you wanted to predict the grades of 10 new students who are not included in this data-set? Justify your choice.
 
       \begin{solution}
 
@@ -322,12 +322,12 @@
 
       \pagebreak
 
-      \part[5]
-      Consider a new definition of a “realizable” case: “For some fixed concept class $C$, such as decision trees, a realizable case is one where the algorithm gets a sample consistent with some concept $c \in C$. In other words, for decision trees, a case is realizable if there is some tree that perfectly classifies the data-set.
-
-      If the number of attributes $A$ is sufficiently large, under what condition would a dataset not 
-      be realizable for decision trees of no fixed depth? Prove that the dataset is unrealizable if 
-      and only if that condition is true.
+      \part[5] Solution for Part 5:
+      %Consider a new definition of a “realizable” case: “For some fixed concept class $C$, such as decision trees, a realizable case is one where the algorithm gets a sample consistent with some concept $c \in C$. In other words, for decision trees, a case is realizable if there is some tree that perfectly classifies the data-set.
+    
+      %If the number of attributes $A$ is sufficiently large, under what condition would a dataset not 
+      %be realizable for decision trees of no fixed depth? Prove that the dataset is unrealizable if 
+      %and only if that condition is true.
 
       \begin{solution}
 
@@ -364,8 +364,8 @@
 
     \begin{parts}
 
-        \part[10]
-        Train a decision tree classifier using the data file. Vary the cut-off depth from 2 to 10 and report the training accuracy for each cut-off depth $k$. Based on your results, select an optimal $k$.
+        \part[10] Solution for Part 1:
+        %Train a decision tree classifier using the data file. Vary the cut-off depth from 2 to 10 and report the training accuracy for each cut-off depth $k$. Based on your results, select an optimal $k$.
 
         \begin{solution}
 
@@ -378,8 +378,8 @@
             for the solution.
         \end{solution}
 
-        \part[8]
-        Using the trained classifier with optimal cut-off depth $k$, classify the 99,762 instances from the test file and report the testing accuracy (the portion of testing instances classified correctly).
+        \part[8] Solution for Part 2:
+        %Using the trained classifier with optimal cut-off depth $k$, classify the 99,762 instances from the test file and report the testing accuracy (the portion of testing instances classified correctly).
 
         \begin{solution}
 
@@ -392,8 +392,8 @@
             for the solution.
         \end{solution}
 
-        \part[7]
-        Do you see any over-fitting issues for this experiment? Report your observations.
+        \part[7] Solution for Part 3:
+        %Do you see any over-fitting issues for this experiment? Report your observations.
 
         \begin{solution}
 
@@ -414,14 +414,14 @@
 
     \begin{parts}
 
-        \part[5]
-        For events $A$, $B$ prove:
+        \part[5] Solution for Part 1:
+        %For events $A$, $B$ prove:
 
-        \begin{center}
-            $\displaystyle{P(A|B) = \frac{P(B|A)P(A)}{P(B|A)P(A) + P(B|\lnot A)P(\lnot A)}}$
-        \end{center}
+        %\begin{center}
+        %    $\displaystyle{P(A|B) = \frac{P(B|A)P(A)}{P(B|A)P(A) + P(B|\lnot A)P(\lnot A)}}$
+        %\end{center}
 
-        ($\lnot A$ denotes the event that $A$ does not occur.)
+        %($\lnot A$ denotes the event that $A$ does not occur.)
 
         \begin{solution}
 
@@ -464,30 +464,30 @@
         \pagebreak
 
         \part
-        Let $X$, $Y$ , and $Z$ be random variables taking values in ${0, 1}$. The following table lists the probability of each possible assignment of 0 and 1 to the variables $X$, $Y$, and $Z$:
+        %Let $X$, $Y$ , and $Z$ be random variables taking values in ${0, 1}$. The following table lists the probability of each possible assignment of 0 and 1 to the variables $X$, $Y$, and $Z$:
 
-                          \begin{table}[!h]
-            \begin{center}
-            \begin{tabular}{c | c | c | c | c}
-                \hline
-                \multirow{2}{4em}{} & \multicolumn{2}{c|}{ \textbf{$Z=0$}  } & \multicolumn{2}{c}{ \textbf{$Z=1$}  }\\ 
-                \hline
-                \textbf{} & $X=0$ & $X=1$ & $X=0$ & $X=1$ \\ 
-                %\multicolumn{4}{c|}{ y } \\
-                %&  & y & \\
-                \hline
-                $Y=0$ & 0.1 & 0.05 & 0.1 & 0.1 \\ 
-                \hline
-                $Y=1$ & 0.2 & 0.1 & 0.175 & 0.175 \\ 
-                \hline
-            \end{tabular}
-            \end{center}
-            \end{table}
+        %                  \begin{table}[!h]
+        %    \begin{center}
+        %    \begin{tabular}{c | c | c | c | c}
+        %        \hline
+        %        \multirow{2}{4em}{} & \multicolumn{2}{c|}{ \textbf{$Z=0$}  } & \multicolumn{2}{c}{ \textbf{$Z=1$}  }\\ 
+        %        \hline
+        %        \textbf{} & $X=0$ & $X=1$ & $X=0$ & $X=1$ \\ 
+        %        %\multicolumn{4}{c|}{ y } \\
+        %        %&  & y & \\
+        %        \hline
+        %        $Y=0$ & 0.1 & 0.05 & 0.1 & 0.1 \\ 
+        %        \hline
+        %        $Y=1$ & 0.2 & 0.1 & 0.175 & 0.175 \\ 
+        %        \hline
+        %    \end{tabular}
+        %    \end{center}
+        %    \end{table}
 
         \begin{subparts}
 
-            \subpart[5]
-            Is $X$ independent of $Y$? Why or why not?
+            \subpart[5] Solution for Part 2.i:
+            %Is $X$ independent of $Y$? Why or why not?
     
             \begin{solution}
 
@@ -574,8 +574,8 @@
 
             \pagebreak
 
-            \subpart[5]
-            Is $X$ conditionally independent of $Y$ given $Z$? Why or why not?
+            \subpart[5] Solution for Part 2.ii:
+            %Is $X$ conditionally independent of $Y$ given $Z$? Why or why not?
     
             \begin{solution}
 
@@ -713,8 +713,8 @@
 
             \pagebreak
 
-            \subpart[5]
-            Calculate $P (X \neq Y |Z = 0)$.
+            \subpart[5] Solution for Part 2.iii:
+            %Calculate $P (X \neq Y |Z = 0)$.
     
             \begin{solution}
 
@@ -771,26 +771,28 @@
 
     \titledquestion{Implementing Naive Bayes}[25]
 
-    You will now learn how to use Naive Bayes Algorithm to solve a real-world problem: text cat-
-    egorization. Text categorization (also referred to as text classification) i s t he t ask o f assigning
-    documents to one or more topics. For our homework, we will use a benchmark dataset that is fre-
-    quently used in text categorization problems. This dataset, Reuters-21578, consists of documents that
-    appeared in Reuters newswire in 1987. Each document was then manually categorized into a topic
-    among over 100 topics. In this homework, we are only interested in earn and acquisition (acq) topics,
-    so we will use a shortened version of the dataset (documents assigned to topics other than “earn” or
-    “acq” are not in the dataset provided for the homework). As features, we will use the frequency
-    (counts) of each word that occurred in the document. This model is known as the bag-of-words model
-    and it is frequently used in text categorization. You can download Assignment 2 data from the Canvas.
-    In this folder, you will find:
+    %You will now learn how to use Naive Bayes Algorithm to solve a real-world problem: text cat-
+    %egorization. Text categorization (also referred to as text classification) i s t he t ask o f assigning
+    %documents to one or more topics. For our homework, we will use a benchmark dataset that is fre-
+    %quently used in text categorization problems. This dataset, Reuters-21578, consists of documents that
+    %appeared in Reuters newswire in 1987. Each document was then manually categorized into a topic
+    %among over 100 topics. In this homework, we are only interested in earn and acquisition (acq) topics,
+    %so we will use a shortened version of the dataset (documents assigned to topics other than “earn” or
+    %“acq” are not in the dataset provided for the homework). As features, we will use the frequency
+    %(counts) of each word that occurred in the document. This model is known as the bag-of-words model
+    %and it is frequently used in text categorization. You can download Assignment 2 data from the Canvas.
+    %In this folder, you will find:
+    %
+    %\begin{itemize}
+    %    \item \textbf{train.csv:} Training data. Each row represents a document, and each column separated by
+    %    commas represents features (word counts). There are 4527 documents and 5180 words.
+    %    \item \textbf{train labels.txt:} labels for the training data
+    %    \item \textbf{test.csv:} Test data, 1806 documents and 5180 words
+    %\end{itemize}
+    %
+    %Implement Naive Bayes Algorithm. Train your classifier on the training set that is given and report training accuracy, testing accuracy, and the amount of time spent training the classifier.
 
-    \begin{itemize}
-        \item \textbf{train.csv:} Training data. Each row represents a document, and each column separated by
-        commas represents features (word counts). There are 4527 documents and 5180 words.
-        \item \textbf{train labels.txt:} labels for the training data
-        \item \textbf{test.csv:} Test data, 1806 documents and 5180 words
-    \end{itemize}
-
-    Implement Naive Bayes Algorithm. Train your classifier on the training set that is given and report training accuracy, testing accuracy, and the amount of time spent training the classifier.
+    Solution for Q4:
 
     \begin{solution}
 
